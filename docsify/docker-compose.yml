@@ -1,0 +1,13 @@
+---
+version: '3.6'
+
+services:
+  media-naming-docs:
+    container_name: media-naming-docs
+    image: media-naming-docs:latest
+    build:
+      context: ..
+      dockerfile: ./docsify/Dockerfile
+    ports:
+    - 6007:80
+    restart: unless-stopped
