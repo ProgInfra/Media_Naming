@@ -33,6 +33,14 @@ How to structure your system (media, computer, ...).
 ## Documentations
 
 - [Ideas](./docs/ideas.md)
+- [Document Naming](./docs/document.md)
+- [Image Naming](./docs/image.md)
+- [Ebook Naming](./docs/ebook.md)
+- [Music Naming](./docs/music.md)
+- [Video Naming](./docs/video.md)
+- [Game Naming](./docs/game.md)
+- [Account Naming](./docs/account.md)
+- [System Naming](./docs/system.md)
 
 ## Development
 
