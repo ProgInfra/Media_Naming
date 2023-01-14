@@ -10,4 +10,4 @@
 
 ## Ideas
 
-- Nothing.
+- Use IMDB to get some metadata automatically.

@@ -13,6 +13,7 @@
   - [Documentations](#documentations)
   - [Getting Started](#getting-started)
   - [Development](#development)
+    - [Build and Deploy](#build-and-deploy)
     - [Requirements](#requirements)
     - [Docsify](#docsify)
   - [Contributing](#contributing)
@@ -45,14 +46,67 @@ How to structure your system (media, computer, ...).
 
 ## Getting Started
 
-TODO Getting Started Script (get from Pypi)
+To **install** it :
+
+```bash
+# Install with Pip
+pip install --user naming
+```
+
+To **use** it :
+
+```bash
+naming --help
+naming init -o tmp
+naming media init -o tmp/medias
+naming media image -m tmp/medias -t photo "Summer 2022"
+```
 
 ## Development
 
 If you want you can **develop** this repository :
 
 1) You need to install the [Requirements](#requirements)
-2) You can develop on [Docsify](#docsify)
+2) You can develop on [Naming Script](#build-and-deploy)
+3) You can develop on [Docsify](#docsify)
+
+### Build and Deploy
+
+**Build** :
+
+```bash
+docker-compose build
+docker-compose run --rm media-naming pdm install
+```
+
+**Launch** :
+
+```bash
+# Bash
+docker-compose run --rm media-naming bash
+pdm run python ./src/naming.py --help
+
+# Launch Simple Command
+docker-compose run --rm media-naming pdm run python ./src/naming.py --help
+```
+
+**Deploy** :
+
+```bash
+# Build
+pdm build
+# Install locally
+pip install ./dist/naming-1.0.0-py3-none-any.whl
+# Test locally
+python -m naming --help
+```
+
+**Publish** :
+
+```bash
+TODO https://typer.tiangolo.com/tutorial/package/#publish-to-pypi-optional
+pdm publish
+```
 
 ### Requirements
 

@@ -15,13 +15,16 @@
   - **screenshots** :
     - screenshot_YYYY-MM-DD_HH-MM-SS.png
     - screenshot_2022-11-31_18-54-30.png
-  - **YYYY** :
-    - event_name_YYYY-MM-DD_001.png
-  - **2022** :
-    - event_name_2022-11-31_001.png
-  - **family** :
-    - family_event_name_YYYY-MM-DD_001.png
-    - family_event_name_2022-11-31_001.png
+  - **wallpapers** :
+    - wallpaper_name_0001.png
+  - **photos** :
+    - **YYYY** :
+      - event_name_YYYY-MM-DD_001.png
+    - **2022** :
+      - event_name_2022-11-31_001.png
+    - **family** :
+      - family_event_name_YYYY-MM-DD_001.png
+      - family_event_name_2022-11-31_001.png
 
 ## Naming Rules
 

@@ -1,5 +1,11 @@
 # Temporary Folder
 tmp
 
-# VS Code
-.vscode
+# Python
+__pycache__
+.venv
+dist
+build
+
+# PDM
+.pdm.toml

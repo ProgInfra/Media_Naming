@@ -24,11 +24,13 @@
       - game_name_fix_002.exe
     - **mods** :
       - game_name_mod_name.zip
-    - **wallpaper** :
+    - **wallpapers** :
       - game_name_wallpaper_001.png
     - **screenshots** :
       - game_name_screenshot_YYYY-MM-DD_HH-MM-SS.png
       - game_name_screenshot_2022-11-31_18-54-30.png
+    - **saves** :
+      - game_name_save_001_YYYY-MM-DD_HH-MM-SS.zip
     - cover.png
 
 ## Naming Rules
