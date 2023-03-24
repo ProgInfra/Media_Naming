@@ -35,6 +35,32 @@ def createFolders(basePath: str, folders: dict, subfolder: bool = False) -> int:
   return folderCounter
 
 
+def writeFile(filePath: str, fileName: str, data: str):
+  '''
+  Write file with data provided
+  '''
+  try:
+    with open(f"{filePath}/{fileName}", "w") as file:
+      file.write(data)
+  except IOError as error:
+    print(f"Error when write file : {filePath}/{fileName}")
+    raise error
+
+
+def createTodoFile(filePath: str, datas: dict):
+  '''
+  Create todo file with data provided.
+  '''
+  print(f"Create todo file : {filePath}")
+  todo: str = "# TODO :\n\n"
+  if isinstance(datas, dict):
+    for data in datas:
+      todo += f"- [ ] {data.capitalize()}\n"
+  else:
+    raise Exception("Bad data format !")
+  writeFile(filePath, "TODO.md", todo)
+
+
 def getFormattedName(name: str) -> str:
   '''
   Format name from Serie's Name to series_name.

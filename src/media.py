@@ -73,7 +73,8 @@ def game(
     mod: bool = typer.Option(True),
     wallpaper: bool = typer.Option(True),
     screenshot: bool = typer.Option(True),
-    save: bool = typer.Option(True)
+    save: bool = typer.Option(True),
+    todo: bool = typer.Option(True)
   ):
   '''
   Add folders to store a game
@@ -81,15 +82,17 @@ def game(
   gameFolders = {}
   gamePath = path.join(media_folder, f"games")
 
-  gameFolders[utils.getFormattedName(name)] = None
+  gameName = utils.getFormattedName(name)
+  gameFolders[gameName] = {}
 
-  if image: gameFolders['images'] = None
-  if package: gameFolders['packages'] = None
-  if patch: gameFolders['patches'] = None
-  if mod: gameFolders['mods'] = None
-  if wallpaper: gameFolders['wallpapers'] = None
-  if screenshot: gameFolders['screenshots'] = None
-  if save: gameFolders['saves'] = None
+  if image: gameFolders[gameName]['images'] = None
+  if package: gameFolders[gameName]['packages'] = None
+  if patch: gameFolders[gameName]['patches'] = None
+  if mod: gameFolders[gameName]['mods'] = None
+  if wallpaper: gameFolders[gameName]['wallpapers'] = None
+  if screenshot: gameFolders[gameName]['screenshots'] = None
+  if save: gameFolders[gameName]['saves'] = None
+  if todo: utils.createTodoFile(f"{gamePath}/{gameName}", gameFolders[gameName])
 
   utils.createFolders(gamePath, gameFolders)
 
@@ -165,7 +168,8 @@ def serie(
     backdrop: bool = typer.Option(True),
     ost: bool = typer.Option(True),
     clip: bool = typer.Option(True),
-    extra: bool = typer.Option(True)
+    extra: bool = typer.Option(True),
+    todo: bool = typer.Option(True)
   ):
   '''
   Add folders to store a serie
@@ -188,7 +192,9 @@ def serie(
 
   if nb_season > 0:
     for i in range(nb_season):
-      serieFolders[serieName][f"season_{i + 1:02d}"] = serieBaseFolders
+      seasonName = f"season_{i + 1:02d}"
+      serieFolders[serieName][seasonName] = serieBaseFolders
+      if todo: utils.createTodoFile(f"{seriePath}/{serieName}/{seasonName}", serieBaseFolders)
 
   utils.createFolders(seriePath, serieFolders)
 
@@ -202,7 +208,8 @@ def movie(
     db_id: str = typer.Option(None, "-id", "--db-id"),
     extrafanart: bool = typer.Option(True),
     screenshot: bool = typer.Option(True),
-    clip: bool = typer.Option(True)
+    clip: bool = typer.Option(True),
+    todo: bool = typer.Option(True)
   ):
   '''
   Add folders to store a movie
@@ -218,5 +225,6 @@ def movie(
   if extrafanart: movieFolders[movieName]["extrafanart"] = None
   if screenshot: movieFolders[movieName]["screenshots"] = None
   if clip: movieFolders[movieName]["clips"] = None
+  if todo: utils.createTodoFile(f"{moviePath}/{movieName}", movieFolders[movieName])
 
   utils.createFolders(moviePath, movieFolders)
