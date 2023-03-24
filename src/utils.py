@@ -1,5 +1,6 @@
 # Import installed libraries
 from os import path, makedirs
+from json import dumps
 
 
 def createFolder(folderPath: str):
@@ -53,12 +54,15 @@ def createTodoFile(filePath: str, datas: dict):
   '''
   print(f"Create todo file : {filePath}")
   todo: str = "# TODO :\n\n"
+  todoJson: dict = {}
   if isinstance(datas, dict):
     for data in datas:
       todo += f"- [ ] {data.capitalize()}\n"
+      todoJson[data] = False
   else:
     raise Exception("Bad data format !")
   writeFile(filePath, "TODO.md", todo)
+  writeFile(filePath, "TODO.json", dumps(todoJson))
 
 
 def getFormattedName(name: str) -> str:

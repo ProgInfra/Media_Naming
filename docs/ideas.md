@@ -11,3 +11,4 @@
 ## Ideas
 
 - Use IMDB to get some metadata automatically.
+- Command to read each TODO.json files in a medias folder and display stats.
