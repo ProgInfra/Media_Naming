@@ -1,0 +1,12 @@
+---
+
+services:
+  media-naming-dev:
+    container_name: media-naming-dev
+    image: progower/media-naming:dev
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile.dev
+    volumes:
+    - ../:/usr/src/app:rw
+    restart: "no"

@@ -12,10 +12,10 @@
   - [Access](#access)
   - [Documentations](#documentations)
   - [Getting Started](#getting-started)
+    - [With Pip](#with-pip)
+    - [With Docker](#with-docker)
   - [Development](#development)
     - [Build and Deploy](#build-and-deploy)
-    - [Requirements](#requirements)
-    - [Docsify](#docsify)
   - [Contributing](#contributing)
   - [Licence](#licence)
 
@@ -46,6 +46,8 @@ How to structure your system (media, computer, ...).
 
 ## Getting Started
 
+### With Pip
+
 To **install** it :
 
 ```bash
@@ -62,70 +64,50 @@ naming media init -o tmp/medias
 naming media image -m tmp/medias -t photo "Summer 2022"
 ```
 
+### With Docker
+
+To **install** it :
+
+```bash
+docker pull progower/media-naming:1.0.0
+```
+
+To **use** it :
+
+```bash
+alias naming='docker run --rm -it -v ${PWD}:/app --workdir /app progower/media-naming:1.0.0 naming'
+naming --help
+naming init -o tmp
+naming media init -o tmp/medias
+naming media image -m tmp/medias -t photo "Summer 2022"
+```
+
 ## Development
 
 If you want you can **develop** this repository :
 
-1) You need to install the [Requirements](#requirements)
-2) You can develop on [Naming Script](#build-and-deploy)
-3) You can develop on [Docsify](#docsify)
+1) You need to install **[Docker](https://docs.docker.com/get-docker/)** and **[Make](https://progdevlab.gitlab.io/dyntools/#/docs/global/makefile)**
+2) [Build and Deploy](#build-and-deploy) the application
 
 ### Build and Deploy
 
-**Build** :
-
-```bash
-docker-compose build
-docker-compose run --rm media-naming pdm install
-```
-
-**Launch** :
-
-```bash
-# Bash
-docker-compose run --rm media-naming bash
-pdm run python ./src/naming.py --help
-
-# Launch Simple Command
-docker-compose run --rm media-naming pdm run python ./src/naming.py --help
-```
-
-**Deploy** :
-
-```bash
-# Build
-pdm build
-# Install locally
-pip install ./dist/naming-1.0.0-py3-none-any.whl
-# Test locally
-python -m naming --help
-```
-
-**Publish** :
-
-```bash
-TODO https://typer.tiangolo.com/tutorial/package/#publish-to-pypi-optional
-pdm publish
-```
-
-### Requirements
-
-We use **Docker** :
-
-- Docker
-- Docker Compose
-
-### Docsify
-
-```bash
-cd docsify
-
-# Development
-docker-compose -f docker-compose.dev.yml up
-
-# Production
-docker-compose up --build
-```
+- **Production** :
+  - `make publish` : [TODO](https://typer.tiangolo.com/tutorial/package/#publish-to-pypi-optional) with pdm publish
+  - `make publish-docker` : Publish in Docker repository
+  - `make build` : Build
+  - `make start` : Start
+  - `make start-detach` : Start in detach mode
+  - `make stop` : Stop
+  - `make start-docs` : Start Documentation Website
+  - `make stop-docs` : Stop Documentation Website
+- **Development** :
+  - `make bash-dev` : Start a bash into the container to develop (example : `pdm run python ./src/naming.py --help`)
+  - `make build-dev` : Build
+  - `make start-dev` : Start
+  - `make start-detach-dev` : Start in detach mode
+  - `make stop-dev` : Stop
+  - `make start-docs-dev` : Start Documentation Website
+  - `make stop-docs-dev` : Stop Documentation Website
 
 ## Contributing
 

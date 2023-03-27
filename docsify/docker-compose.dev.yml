@@ -1,5 +1,4 @@
 ---
-version: '3.6'
 
 services:
   media-naming-docs-dev:
@@ -16,5 +15,5 @@ services:
     - ../LICENCE.md:/app/LICENCE.md
     - ../README.md:/app/README.md
     ports:
-    - 6007:3000
+    - 3000:3000
     restart: unless-stopped

@@ -1,0 +1,10 @@
+---
+
+services:
+  media-naming:
+    container_name: media-naming
+    image: progower/media-naming:1.0.0
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    restart: "no"

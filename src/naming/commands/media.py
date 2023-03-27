@@ -6,8 +6,9 @@ from datetime import datetime
 import typer
 
 # Import created libraries
-from . import utils
-from . import models
+from ..services import utils
+from ..models.media import ImageType, BookType, SerieType
+from ..models.db import DbIdType
 
 
 # Init Typer
@@ -101,7 +102,7 @@ def game(
 def image(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: models.ImageType = typer.Option("photo", "-t", "--type")
+    type: ImageType = typer.Option("photo", "-t", "--type")
   ):
   '''
   Add folders to store some images
@@ -118,7 +119,7 @@ def image(
 def book(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: models.BookType = typer.Option("book", "-t", "--type"),
+    type: BookType = typer.Option("book", "-t", "--type"),
     author_name: str = typer.Option(None, "-an", "--author-name")
   ):
   '''
@@ -159,8 +160,8 @@ def music(
 def serie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: models.SerieType = typer.Option("serie", "-t", "--type"),
-    db_id_type: models.DbIdType = typer.Option("imdb", "-db", "--db-type"),
+    type: SerieType = typer.Option("serie", "-t", "--type"),
+    db_id_type: DbIdType = typer.Option("imdb", "-db", "--db-type"),
     db_id: str = typer.Option(None, "-id", "--db-id"),
     nb_season: int = typer.Option(0, "-ns", "--nb-season"),
     wallpaper: bool = typer.Option(True),
@@ -204,7 +205,7 @@ def movie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     year: int = typer.Option(datetime.now().year, "-y", "--year"),
-    db_id_type: models.DbIdType = typer.Option("imdb", "-db", "--db-type"),
+    db_id_type: DbIdType = typer.Option("imdb", "-db", "--db-type"),
     db_id: str = typer.Option(None, "-id", "--db-id"),
     extrafanart: bool = typer.Option(True),
     screenshot: bool = typer.Option(True),

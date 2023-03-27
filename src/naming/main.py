@@ -2,8 +2,8 @@
 import typer
 
 # Import created libraries
-from . import utils
-from . import media
+from .commands import media
+from .services import utils
 
 
 # Init Typer

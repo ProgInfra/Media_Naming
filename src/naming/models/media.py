@@ -21,9 +21,3 @@ class BookType(str, Enum):
 class SerieType(str, Enum):
   serie = "serie"
   anime = "anime"
-
-
-class DbIdType(str, Enum):
-  imdb = "imdb"
-  tvdb = "tvdb"
-  tmdb = "tmdb"
