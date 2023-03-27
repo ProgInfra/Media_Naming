@@ -3,20 +3,20 @@ from os import path, makedirs
 from json import dumps
 
 
-def createFolder(folderPath: str):
+async def createFolder(folderPath: str):
   '''
   Create folder from path.
   '''
   print(f"Create folder : {folderPath}")
   try:
-    makedirs(folderPath, exist_ok=True)
+    await makedirs(folderPath, exist_ok=True)
   except OSError as error:
     print(f"Error when create folder : {folderPath}")
     raise error
   print("Create complete !")
 
 
-def createFolders(basePath: str, folders: dict, subfolder: bool = False) -> int:
+async def createFolders(basePath: str, folders: dict, subfolder: bool = False) -> int:
   '''
   Create folders from base path and folders tree.
   '''
@@ -25,10 +25,10 @@ def createFolders(basePath: str, folders: dict, subfolder: bool = False) -> int:
   if isinstance(folders, dict):
     for folder in folders:
       folderPath: str = path.join(basePath, folder)
-      createFolder(folderPath)
+      await createFolder(folderPath)
       folderCounter += 1
       if folders[folder] is not None and isinstance(folders[folder], dict):
-        folderCounter += createFolders(folderPath, folders[folder], True)
+        folderCounter += await createFolders(folderPath, folders[folder], True)
   else:
     raise Exception("Bad folders tree format !")
   if not subfolder:
@@ -36,19 +36,19 @@ def createFolders(basePath: str, folders: dict, subfolder: bool = False) -> int:
   return folderCounter
 
 
-def writeFile(filePath: str, fileName: str, data: str):
+async def writeFile(filePath: str, fileName: str, data: str):
   '''
   Write file with data provided
   '''
   try:
     with open(f"{filePath}/{fileName}", "w") as file:
-      file.write(data)
+      await file.write(data)
   except IOError as error:
     print(f"Error when write file : {filePath}/{fileName}")
     raise error
 
 
-def createTodoFile(filePath: str, datas: dict):
+async def createTodoFile(filePath: str, datas: dict):
   '''
   Create todo file with data provided.
   '''
@@ -61,11 +61,11 @@ def createTodoFile(filePath: str, datas: dict):
       todoJson[data] = False
   else:
     raise Exception("Bad data format !")
-  writeFile(filePath, "TODO.md", todo)
-  writeFile(filePath, "TODO.json", dumps(todoJson))
+  await writeFile(filePath, "TODO.md", todo)
+  await writeFile(filePath, "TODO.json", dumps(todoJson))
 
 
-def getFormattedName(name: str) -> str:
+async def getFormattedName(name: str) -> str:
   '''
   Format name from Serie's Name to series_name.
   '''

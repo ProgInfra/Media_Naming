@@ -101,7 +101,7 @@ If you want you can **develop** this repository :
   - `make start-docs` : Start Documentation Website
   - `make stop-docs` : Stop Documentation Website
 - **Development** :
-  - `make bash-dev` : Start a bash into the container to develop (example : `pdm run python ./src/naming.py --help`)
+  - `make bash-dev` : Start a bash into the container to develop (example : `pdm run naming --help`)
   - `make build-dev` : Build
   - `make start-dev` : Start
   - `make start-detach-dev` : Start in detach mode

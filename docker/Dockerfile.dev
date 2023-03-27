@@ -4,4 +4,4 @@ WORKDIR /usr/src/app
 # Install PDM Globally
 RUN pip install pdm
 
-CMD [ "pdm", "run", "python", "./src/naming.py", "--help" ]
+CMD [ "pdm", "run", "naming", "--help" ]

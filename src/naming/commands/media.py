@@ -9,6 +9,7 @@ import typer
 from ..services import utils
 from ..models.media import ImageType, BookType, SerieType
 from ..models.db import DbIdType
+from ..utils import wrapper
 
 
 # Init Typer
@@ -16,7 +17,8 @@ app = typer.Typer()
 
 
 @app.command()
-def init(
+@wrapper.typer_async
+async def init(
     output_folder: str = typer.Option(".", "-o", "--output-folder"),
     game: bool = typer.Option(True),
     image: bool = typer.Option(True),
@@ -58,14 +60,15 @@ def init(
     'divers': None,
   }
 
-  utils.createFolders(
-    utils.getFormattedName(output_folder),
+  await utils.createFolders(
+    await utils.getFormattedName(output_folder),
     mediaFolders
   )
 
 
 @app.command()
-def game(
+@wrapper.typer_async
+async def game(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     image: bool = typer.Option(True),
@@ -83,7 +86,7 @@ def game(
   gameFolders = {}
   gamePath = path.join(media_folder, f"games")
 
-  gameName = utils.getFormattedName(name)
+  gameName = await utils.getFormattedName(name)
   gameFolders[gameName] = {}
 
   if image: gameFolders[gameName]['images'] = None
@@ -93,13 +96,14 @@ def game(
   if wallpaper: gameFolders[gameName]['wallpapers'] = None
   if screenshot: gameFolders[gameName]['screenshots'] = None
   if save: gameFolders[gameName]['saves'] = None
-  if todo: utils.createTodoFile(f"{gamePath}/{gameName}", gameFolders[gameName])
+  if todo: await utils.createTodoFile(f"{gamePath}/{gameName}", gameFolders[gameName])
 
-  utils.createFolders(gamePath, gameFolders)
+  await utils.createFolders(gamePath, gameFolders)
 
 
 @app.command()
-def image(
+@wrapper.typer_async
+async def image(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     type: ImageType = typer.Option("photo", "-t", "--type")
@@ -110,13 +114,14 @@ def image(
   imageFolders = {}
   imagePath = path.join(media_folder, f"images/{type}s")
 
-  imageFolders[utils.getFormattedName(name)] = None
+  imageFolders[await utils.getFormattedName(name)] = None
 
-  utils.createFolders(imagePath, imageFolders)
+  await utils.createFolders(imagePath, imageFolders)
 
 
 @app.command()
-def book(
+@wrapper.typer_async
+async def book(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     type: BookType = typer.Option("book", "-t", "--type"),
@@ -128,16 +133,17 @@ def book(
   bookFolders = {}
   bookPath = path.join(media_folder, f"books/{type}s")
 
-  bookFolders[utils.getFormattedName(name)] = None
+  bookFolders[await utils.getFormattedName(name)] = None
 
   if author_name:
-    bookPath = path.join(bookPath, utils.getFormattedName(author_name))
+    bookPath = path.join(bookPath, await utils.getFormattedName(author_name))
 
-  utils.createFolders(bookPath, bookFolders)
+  await utils.createFolders(bookPath, bookFolders)
 
 
 @app.command()
-def music(
+@wrapper.typer_async
+async def music(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     artist_name: str = typer.Option(None, "-an", "--artist-name")
@@ -148,16 +154,17 @@ def music(
   musicFolders = {}
   musicPath = path.join(media_folder, f"musics")
 
-  musicFolders[utils.getFormattedName(name)] = None
+  musicFolders[await utils.getFormattedName(name)] = None
 
   if artist_name:
-    musicPath = path.join(musicPath, utils.getFormattedName(artist_name))
+    musicPath = path.join(musicPath, await utils.getFormattedName(artist_name))
 
-  utils.createFolders(musicPath, musicFolders)
+  await utils.createFolders(musicPath, musicFolders)
 
 
 @app.command()
-def serie(
+@wrapper.typer_async
+async def serie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     type: SerieType = typer.Option("serie", "-t", "--type"),
@@ -178,7 +185,7 @@ def serie(
   serieFolders = {}
   seriePath = path.join(media_folder, f"videos/{type}s")
 
-  serieName = f"{utils.getFormattedName(name)}"
+  serieName = f"{await utils.getFormattedName(name)}"
   if db_id:
     serieName = f"{serieName}_[{db_id_type}id-{db_id}]"
   serieFolders[serieName] = {}
@@ -195,13 +202,14 @@ def serie(
     for i in range(nb_season):
       seasonName = f"season_{i + 1:02d}"
       serieFolders[serieName][seasonName] = serieBaseFolders
-      if todo: utils.createTodoFile(f"{seriePath}/{serieName}/{seasonName}", serieBaseFolders)
+      if todo: await utils.createTodoFile(f"{seriePath}/{serieName}/{seasonName}", serieBaseFolders)
 
-  utils.createFolders(seriePath, serieFolders)
+  await utils.createFolders(seriePath, serieFolders)
 
 
 @app.command()
-def movie(
+@wrapper.typer_async
+async def movie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     year: int = typer.Option(datetime.now().year, "-y", "--year"),
@@ -218,7 +226,7 @@ def movie(
   movieFolders = {}
   moviePath = path.join(media_folder, f"videos/movies")
 
-  movieName = f"{utils.getFormattedName(name)}_({year})"
+  movieName = f"{await utils.getFormattedName(name)}_({year})"
   if db_id:
     movieName = f"{movieName}_[{db_id_type}id-{db_id}]"
   movieFolders[movieName] = {}
@@ -226,6 +234,6 @@ def movie(
   if extrafanart: movieFolders[movieName]["extrafanart"] = None
   if screenshot: movieFolders[movieName]["screenshots"] = None
   if clip: movieFolders[movieName]["clips"] = None
-  if todo: utils.createTodoFile(f"{moviePath}/{movieName}", movieFolders[movieName])
+  if todo: await utils.createTodoFile(f"{moviePath}/{movieName}", movieFolders[movieName])
 
-  utils.createFolders(moviePath, movieFolders)
+  await utils.createFolders(moviePath, movieFolders)

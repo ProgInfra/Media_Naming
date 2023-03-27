@@ -4,6 +4,7 @@ import typer
 # Import created libraries
 from .commands import media
 from .services import utils
+from .utils import wrapper
 
 
 # Init Typer
@@ -11,7 +12,8 @@ app = typer.Typer()
 
 
 @app.command()
-def init(
+@wrapper.typer_async
+async def init(
     output_folder: str = typer.Option(".", "-o", "--output-folder"),
     admin: bool = typer.Option(True),
     project: bool = typer.Option(True),
@@ -53,8 +55,8 @@ def init(
       systemFolders['sys']['games'] = None
       systemFolders['sys']['softwares'] = None
 
-  utils.createFolders(
-    utils.getFormattedName(output_folder),
+  await utils.createFolders(
+    await utils.getFormattedName(output_folder),
     systemFolders
   )
 
