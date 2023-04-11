@@ -9,7 +9,7 @@ async def createFolder(folderPath: str):
   '''
   print(f"Create folder : {folderPath}")
   try:
-    await makedirs(folderPath, exist_ok=True)
+    makedirs(folderPath, exist_ok=True)
   except OSError as error:
     print(f"Error when create folder : {folderPath}")
     raise error
