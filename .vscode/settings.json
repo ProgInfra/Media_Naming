@@ -1,4 +1,8 @@
 {
-    "python.autoComplete.extraPaths": [".venv/lib/python3.10/site-packages"],
-    "python.analysis.extraPaths": [".venv/lib/python3.10/site-packages"]
+  "python.autoComplete.extraPaths": [".venv/lib/python3.10/site-packages"],
+  "python.analysis.extraPaths": [".venv/lib/python3.10/site-packages"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "none"
 }

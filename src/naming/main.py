@@ -2,7 +2,7 @@
 import typer
 
 # Import created libraries
-from .commands import media
+from .cli import media
 from .services import utils
 from .utils import wrapper
 
@@ -21,48 +21,51 @@ async def init(
     sys: bool = typer.Option(True),
     linux: bool = typer.Option(True),
     windows: bool = typer.Option(True)
-  ):
-  '''
-  Create basics folders for your main operating system
-  '''
-  systemFolders = {
-    'documents': None,
-  }
-
-  if admin:
-    systemFolders['admin'] = {
-      'accounts': None,
-      'backups': None,
-      'documents': None,
+):
+    '''
+    Create basics folders for your main operating system
+    '''
+    systemFolders = {
+        'documents': None,
     }
 
-  if project: systemFolders['projects'] = None
-  if server: systemFolders['servers'] = None
+    if admin:
+        systemFolders['admin'] = {
+            'accounts': None,
+            'backups': None,
+            'documents': None,
+        }
 
-  if sys:
-    systemFolders['sys'] = {
-      'backups': None,
-      'downloads': None,
-      'gnos': None,
-      'tmp': None,
-      'vm': None,
-    }
+    if project:
+        systemFolders['projects'] = None
+    if server:
+        systemFolders['servers'] = None
 
-    if linux and windows:
-      systemFolders['sys']['games'] = {'linux': None, 'windows': None}
-      systemFolders['sys']['softwares'] = {'linux': None, 'windows': None}
-    else:
-      systemFolders['sys']['games'] = None
-      systemFolders['sys']['softwares'] = None
+    if sys:
+        systemFolders['sys'] = {
+            'backups': None,
+            'downloads': None,
+            'gnos': None,
+            'tmp': None,
+            'vm': None,
+        }
 
-  await utils.createFolders(
-    await utils.getFormattedName(output_folder),
-    systemFolders
-  )
+        if linux and windows:
+            systemFolders['sys']['games'] = {'linux': None, 'windows': None}
+            systemFolders['sys']['softwares'] = {
+                'linux': None, 'windows': None}
+        else:
+            systemFolders['sys']['games'] = None
+            systemFolders['sys']['softwares'] = None
+
+    await utils.createFolders(
+        await utils.getFormattedName(output_folder),
+        systemFolders
+    )
 
 
 app.add_typer(media.app, name="media")
 
 
 if __name__ == "__main__":
-  app()
+    app()
