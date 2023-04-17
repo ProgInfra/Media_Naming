@@ -42,7 +42,7 @@ async def writeFile(filePath: str, fileName: str, data: str):
     '''
     try:
         with open(f"{filePath}/{fileName}", "w") as file:
-            await file.write(data)
+            file.write(data)
     except IOError as error:
         print(f"Error when write file : {filePath}/{fileName}")
         raise error
@@ -53,13 +53,14 @@ async def createTodoFile(filePath: str, datas: dict):
     Create todo file with data provided.
     '''
     print(f"Create todo file : {filePath}")
-    todoJson: dict = {}
+    todoJson: dict = {'media': False}
     if isinstance(datas, dict):
         for data in datas:
             todoJson[data] = False
     else:
         raise Exception("Bad data format !")
-    await writeFile(filePath, "TODO.json", dumps(todoJson))
+    await createFolder(filePath)
+    await writeFile(filePath, "TODO.json", dumps(todoJson, indent=4))
 
 
 async def getFormattedName(name: str) -> str:
