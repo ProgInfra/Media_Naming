@@ -220,6 +220,10 @@ async def serie(
             serieFolders[serieName][seasonName] = serieBaseFolders
             if todo:
                 await utils.createTodoFile(f"{seriePath}/{serieName}/{seasonName}", serieBaseFolders)
+    else:
+        serieFolders[serieName] = serieBaseFolders
+        if todo:
+            await utils.createTodoFile(f"{seriePath}/{serieName}", serieBaseFolders)
 
     await utils.createFolders(seriePath, serieFolders)
 
