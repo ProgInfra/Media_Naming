@@ -1,4 +1,5 @@
 ---
+name: media-naming-dev
 
 services:
   media-naming-dev:

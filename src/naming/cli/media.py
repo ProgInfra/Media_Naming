@@ -6,9 +6,9 @@ from datetime import datetime
 import typer
 
 # Import created libraries
-from ..services import utils
-from ..models.media import ImageType, BookType, SerieType, MediaDbIdType
 from ..utils import wrapper
+from ..services import media as MediaService
+from ..models import media as MediaModels
 
 
 # Init Typer
@@ -18,7 +18,7 @@ app = typer.Typer()
 @app.command()
 @wrapper.typer_async
 async def init(
-    output_folder: str = typer.Option(".", "-o", "--output-folder"),
+    output_folder: str = typer.Option("./medias", "-o", "--output-folder"),
     game: bool = typer.Option(True),
     image: bool = typer.Option(True),
     book: bool = typer.Option(True),
@@ -28,43 +28,13 @@ async def init(
     '''
     Create folders for your media storage
     '''
-    mediaFolders = {}
-
-    if game:
-        mediaFolders['games'] = None
-
-    if image:
-        mediaFolders['images'] = {
-            'screenshots': None,
-            'wallpapers': None,
-            'photos': None,
-        }
-
-    if book:
-        mediaFolders['books'] = {
-            'audiobooks': None,
-            'books': None,
-            'comics': None,
-            'mangas': None,
-            'manhwas': None,
-            'manhuas': None,
-            'webtoons': None,
-        }
-
-    if music:
-        mediaFolders['musics'] = None
-
-    if video:
-        mediaFolders['videos'] = {
-            'movies': None,
-            'series': None,
-            'animes': None,
-            'divers': None,
-        }
-
-    await utils.createFolders(
-        await utils.getFormattedName(output_folder),
-        mediaFolders
+    await MediaService.init(
+        output_folder,
+        game,
+        image,
+        book,
+        music,
+        video
     )
 
 
@@ -116,7 +86,7 @@ async def game(
 async def image(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: ImageType = typer.Option("photo", "-t", "--type")
+    type: MediaModels.ImageType = typer.Option("photo", "-t", "--type")
 ):
     '''
     Add folders to store some images
@@ -134,7 +104,7 @@ async def image(
 async def book(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: BookType = typer.Option("book", "-t", "--type"),
+    type: MediaModels.BookType = typer.Option("book", "-t", "--type"),
     author_name: str = typer.Option(None, "-an", "--author-name")
 ):
     '''
@@ -177,8 +147,9 @@ async def music(
 async def serie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
-    type: SerieType = typer.Option("serie", "-t", "--type"),
-    db_id_type: MediaDbIdType = typer.Option("imdb", "-db", "--db-type"),
+    type: MediaModels.SerieType = typer.Option("serie", "-t", "--type"),
+    db_id_type: MediaModels.MediaDbIdType = typer.Option(
+        "imdb", "-db", "--db-type"),
     db_id: str = typer.Option(None, "-id", "--db-id"),
     nb_season: int = typer.Option(0, "-ns", "--nb-season"),
     wallpaper: bool = typer.Option(True),
@@ -234,7 +205,8 @@ async def movie(
     name: str,
     media_folder: str = typer.Option(".", "-m", "--media-folder"),
     year: int = typer.Option(datetime.now().year, "-y", "--year"),
-    db_id_type: MediaDbIdType = typer.Option("imdb", "-db", "--db-type"),
+    db_id_type: MediaModels.MediaDbIdType = typer.Option(
+        "imdb", "-db", "--db-type"),
     db_id: str = typer.Option(None, "-id", "--db-id"),
     extrafanart: bool = typer.Option(True),
     screenshot: bool = typer.Option(True),

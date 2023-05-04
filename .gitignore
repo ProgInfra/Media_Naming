@@ -11,4 +11,4 @@ dist
 build
 
 # PDM
-.pdm.toml
+.pdm-python

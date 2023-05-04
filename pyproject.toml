@@ -15,7 +15,13 @@ license = {text = "MIT"}
 [tool.pdm]
 [tool.pdm.scripts]
 naming = { call = "src.naming.main:app" }
+docs = { cmd = "typer naming.main utils docs --output docs/cli.md --name naming" }
 
+[tool.pdm.dev-dependencies]
+dev = [
+    "typer-cli>=0.0.13",
+    "flake8>=6.0.0",
+]
 [build-system]
 requires = ["pdm-pep517>=1.0.0"]
 build-backend = "pdm.pep517.api"

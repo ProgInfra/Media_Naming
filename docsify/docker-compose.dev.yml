@@ -1,4 +1,5 @@
 ---
+name: media-naming-docs-dev
 
 services:
   media-naming-docs-dev:

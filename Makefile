@@ -1,13 +1,12 @@
 # Production
-publish:
-	docker compose -f ./docker/docker-compose.yml push
+publish: publish-docker
 	docker compose -f ./docker/docker-compose.dev.yml run --rm -it media-naming-dev pdm publish
 
-publish-docker:
+publish-docker: build
 	docker login
 	docker push progower/media-naming:1.0.0
 
-build:
+build: generate-docs
 	docker compose -f ./docker/docker-compose.yml build
 
 start:
@@ -18,6 +17,9 @@ start-detach:
 
 stop:
 	docker compose -f ./docker/docker-compose.yml down
+
+generate-docs:
+	docker compose -f ./docker/docker-compose.dev.yml run --rm -it media-naming-dev bash -c "cd src && pdm run docs"
 
 
 start-docs:
