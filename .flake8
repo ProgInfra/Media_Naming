@@ -1,0 +1,3 @@
+[flake8]
+exclude = .git,tmp,.vscode,.venv,dist,build
+max-line-length = 120

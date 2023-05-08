@@ -1,5 +1,20 @@
 # Import installed libraries
-from os import path, makedirs
+from os import path, makedirs, listdir
+
+
+async def listFolder(basePath: str):
+    '''
+    List each folder in path.
+    '''
+    print(f"List folders in path : {basePath}")
+    folders = []
+    try:
+        folders = listdir(basePath)
+    except OSError as error:
+        print(f"Error when list folders in path : {basePath}")
+        raise error
+    print("List complete !")
+    return folders
 
 
 async def createFolder(folderPath: str):

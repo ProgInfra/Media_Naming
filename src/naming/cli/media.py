@@ -1,5 +1,4 @@
 # Import standard libraries
-from os import path
 from datetime import datetime
 
 # Import installed libraries
@@ -42,7 +41,7 @@ async def init(
 @wrapper.typer_async
 async def game(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     image: bool = typer.Option(True),
     package: bool = typer.Option(True),
     patch: bool = typer.Option(True),
@@ -55,98 +54,78 @@ async def game(
     '''
     Add folders to store a game
     '''
-    gameFolders = {}
-    gamePath = path.join(media_folder, f"games")
-
-    gameName = await utils.getFormattedName(name)
-    gameFolders[gameName] = {}
-
-    if image:
-        gameFolders[gameName]['images'] = None
-    if package:
-        gameFolders[gameName]['packages'] = None
-    if patch:
-        gameFolders[gameName]['patches'] = None
-    if mod:
-        gameFolders[gameName]['mods'] = None
-    if wallpaper:
-        gameFolders[gameName]['wallpapers'] = None
-    if screenshot:
-        gameFolders[gameName]['screenshots'] = None
-    if save:
-        gameFolders[gameName]['saves'] = None
-    if todo:
-        await utils.createTodoFile(f"{gamePath}/{gameName}", gameFolders[gameName])
-
-    await utils.createFolders(gamePath, gameFolders)
+    await MediaService.game(
+        name,
+        output_folder,
+        image,
+        package,
+        patch,
+        mod,
+        wallpaper,
+        screenshot,
+        save,
+        todo
+    )
 
 
 @app.command()
 @wrapper.typer_async
 async def image(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     type: MediaModels.ImageType = typer.Option("photo", "-t", "--type")
 ):
     '''
     Add folders to store some images
     '''
-    imageFolders = {}
-    imagePath = path.join(media_folder, f"images/{type}s")
-
-    imageFolders[await utils.getFormattedName(name)] = None
-
-    await utils.createFolders(imagePath, imageFolders)
+    await MediaService.image(
+        name,
+        output_folder,
+        type
+    )
 
 
 @app.command()
 @wrapper.typer_async
 async def book(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     type: MediaModels.BookType = typer.Option("book", "-t", "--type"),
     author_name: str = typer.Option(None, "-an", "--author-name")
 ):
     '''
     Add folders to store a book
     '''
-    bookFolders = {}
-    bookPath = path.join(media_folder, f"books/{type}s")
-
-    bookFolders[await utils.getFormattedName(name)] = None
-
-    if author_name:
-        bookPath = path.join(bookPath, await utils.getFormattedName(author_name))
-
-    await utils.createFolders(bookPath, bookFolders)
+    await MediaService.book(
+        name,
+        output_folder,
+        type,
+        author_name
+    )
 
 
 @app.command()
 @wrapper.typer_async
 async def music(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     artist_name: str = typer.Option(None, "-an", "--artist-name")
 ):
     '''
     Add folders to store some musics
     '''
-    musicFolders = {}
-    musicPath = path.join(media_folder, f"musics")
-
-    musicFolders[await utils.getFormattedName(name)] = None
-
-    if artist_name:
-        musicPath = path.join(musicPath, await utils.getFormattedName(artist_name))
-
-    await utils.createFolders(musicPath, musicFolders)
+    await MediaService.music(
+        name,
+        output_folder,
+        artist_name
+    )
 
 
 @app.command()
 @wrapper.typer_async
 async def serie(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     type: MediaModels.SerieType = typer.Option("serie", "-t", "--type"),
     db_id_type: MediaModels.MediaDbIdType = typer.Option(
         "imdb", "-db", "--db-type"),
@@ -163,47 +142,28 @@ async def serie(
     '''
     Add folders to store a serie
     '''
-    serieFolders = {}
-    seriePath = path.join(media_folder, f"videos/{type}s")
-
-    serieName = f"{await utils.getFormattedName(name)}"
-    if db_id:
-        serieName = f"{serieName}_[{db_id_type}id-{db_id}]"
-    serieFolders[serieName] = {}
-
-    serieBaseFolders = {}
-    if wallpaper:
-        serieBaseFolders["wallpapers"] = None
-    if screenshot:
-        serieBaseFolders["screenshots"] = None
-    if backdrop:
-        serieBaseFolders["backdrops"] = None
-    if ost:
-        serieBaseFolders["theme-music"] = None
-    if clip:
-        serieBaseFolders["clips"] = None
-    if extra:
-        serieBaseFolders["extras"] = None
-
-    if nb_season > 0:
-        for i in range(nb_season):
-            seasonName = f"season_{i + 1:02d}"
-            serieFolders[serieName][seasonName] = serieBaseFolders
-            if todo:
-                await utils.createTodoFile(f"{seriePath}/{serieName}/{seasonName}", serieBaseFolders)
-    else:
-        serieFolders[serieName] = serieBaseFolders
-        if todo:
-            await utils.createTodoFile(f"{seriePath}/{serieName}", serieBaseFolders)
-
-    await utils.createFolders(seriePath, serieFolders)
+    await MediaService.serie(
+        name,
+        output_folder,
+        type,
+        db_id_type,
+        db_id,
+        nb_season,
+        wallpaper,
+        screenshot,
+        backdrop,
+        ost,
+        clip,
+        extra,
+        todo
+    )
 
 
 @app.command()
 @wrapper.typer_async
 async def movie(
     name: str,
-    media_folder: str = typer.Option(".", "-m", "--media-folder"),
+    output_folder: str = typer.Option(".", "-o", "--output-folder"),
     year: int = typer.Option(datetime.now().year, "-y", "--year"),
     db_id_type: MediaModels.MediaDbIdType = typer.Option(
         "imdb", "-db", "--db-type"),
@@ -216,21 +176,14 @@ async def movie(
     '''
     Add folders to store a movie
     '''
-    movieFolders = {}
-    moviePath = path.join(media_folder, f"videos/movies")
-
-    movieName = f"{await utils.getFormattedName(name)}_({year})"
-    if db_id:
-        movieName = f"{movieName}_[{db_id_type}id-{db_id}]"
-    movieFolders[movieName] = {}
-
-    if extrafanart:
-        movieFolders[movieName]["extrafanart"] = None
-    if screenshot:
-        movieFolders[movieName]["screenshots"] = None
-    if clip:
-        movieFolders[movieName]["clips"] = None
-    if todo:
-        await utils.createTodoFile(f"{moviePath}/{movieName}", movieFolders[movieName])
-
-    await utils.createFolders(moviePath, movieFolders)
+    await MediaService.movie(
+        name,
+        output_folder,
+        year,
+        db_id_type,
+        db_id,
+        extrafanart,
+        screenshot,
+        clip,
+        todo
+    )

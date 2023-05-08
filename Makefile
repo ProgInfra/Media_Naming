@@ -30,8 +30,11 @@ stop-docs:
 
 
 # Development
-bash-dev:
+bash:
 	docker compose -f ./docker/docker-compose.dev.yml run --rm -it media-naming-dev bash 
+
+lint:
+	docker compose -f ./docker/docker-compose.dev.yml run --rm -it media-naming-dev pdm run flake8
 
 build-dev:
 	docker compose -f ./docker/docker-compose.dev.yml build
