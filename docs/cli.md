@@ -74,7 +74,7 @@ $ naming media book [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `-t, --type [audiobook|book|comic|manga|manhwa|manhua|webtoon]`: [default: book]
 * `-an, --author-name TEXT`
 * `--help`: Show this message and exit.
@@ -95,7 +95,7 @@ $ naming media game [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `--image / --no-image`: [default: image]
 * `--package / --no-package`: [default: package]
 * `--patch / --no-patch`: [default: patch]
@@ -122,7 +122,7 @@ $ naming media image [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `-t, --type [screenshot|wallpaper|photo]`: [default: photo]
 * `--help`: Show this message and exit.
 
@@ -162,7 +162,7 @@ $ naming media movie [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `-y, --year INTEGER`: [default: 2023]
 * `-db, --db-type [imdb|tvdb|tmdb]`: [default: imdb]
 * `-id, --db-id TEXT`
@@ -188,7 +188,7 @@ $ naming media music [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `-an, --artist-name TEXT`
 * `--help`: Show this message and exit.
 
@@ -208,7 +208,7 @@ $ naming media serie [OPTIONS] NAME
 
 **Options**:
 
-* `-m, --media-folder TEXT`: [default: .]
+* `-o, --output-folder TEXT`: [default: .]
 * `-t, --type [serie|anime]`: [default: serie]
 * `-db, --db-type [imdb|tvdb|tmdb]`: [default: imdb]
 * `-id, --db-id TEXT`

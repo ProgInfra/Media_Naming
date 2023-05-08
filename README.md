@@ -34,6 +34,7 @@ How to structure your system (media, computer, ...).
 
 ## Documentations
 
+- [CLI](./docs/cli.md)
 - [Account Naming](./docs/account.md)
 - [System Naming](./docs/system.md)
 - [Game Naming](./docs/game.md)
@@ -45,6 +46,8 @@ How to structure your system (media, computer, ...).
 - [Ideas](./docs/ideas.md)
 
 ## Getting Started
+
+You can see the [CLI](./docs/cli.md) documentation.
 
 ### With Pip
 
@@ -69,13 +72,13 @@ naming media image -m tmp/medias -t photo "Summer 2022"
 To **install** it :
 
 ```bash
-docker pull progower/media-naming:1.0.0
+docker pull progower/media-naming:1.2.0
 ```
 
 To **use** it :
 
 ```bash
-alias naming='docker run --rm -it -v ${PWD}:/app --workdir /app progower/media-naming:1.0.0 naming'
+alias naming='docker run --rm -it -v ${PWD}:/app --workdir /app progower/media-naming:1.2.0 naming'
 naming --help
 naming init -o tmp
 naming media init -o tmp/medias
