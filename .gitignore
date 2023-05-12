@@ -2,6 +2,8 @@
 tmp
 
 # IDE
+!.vscode/settings.json
+!.vscode/extensions.json
 .vscode
 
 # Python

@@ -6,7 +6,7 @@ publish-docker: build
 	docker login
 	docker push progower/media-naming:1.2.0
 
-build: generate-docs
+build: build-dev generate-docs
 	docker compose -f ./docker/docker-compose.yml build
 
 start:

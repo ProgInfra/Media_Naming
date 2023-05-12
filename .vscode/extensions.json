@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "eamodio.gitlens",
+    "oderwat.indent-rainbow",
+    "EditorConfig.EditorConfig",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "njpwerner.autodocstring",
+    "ms-python.autopep8"
+  ]
+}
