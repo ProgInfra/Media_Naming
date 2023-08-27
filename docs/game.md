@@ -8,6 +8,7 @@
   - [Table Of Contents](#table-of-contents)
   - [Folders](#folders)
   - [Naming Rules](#naming-rules)
+  - [Protocol](#protocol)
 
 ## Folders
 
@@ -39,3 +40,14 @@
 - Replace of **space** by **underline** (**NOT** mad tracks **BUT** mad_tracks)
 - Multiple **zero digit** before number (**NOT** mad_tracks_1 **BUT** mad_tracks_01)
 - **Formatted DateTime** : **YYYY-MM-DD_HH-MM-SS** (Year-Month-Day_Hour-Minute-Second = 2022-11-31_18-54-30)
+
+## Protocol
+
+1) Get game and rename it with [naming rules](#naming-rules)
+2) Find images or packages with game installation
+3) Find patches if needed (update, language patch, ...)
+4) Find mods if needed
+5) Find wallpapers, rename it and convert these to PNG
+6) Add some screenshot if you have some
+7) Find complete saves or backup save if you want
+8) Get cover and convert it to PNG

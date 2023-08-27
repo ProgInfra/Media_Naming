@@ -8,6 +8,7 @@
   - [Table Of Contents](#table-of-contents)
   - [Folders](#folders)
   - [Naming Rules](#naming-rules)
+  - [Protocol](#protocol)
 
 ## Folders
 
@@ -60,3 +61,8 @@ We use this documentation to organize our books : [Jellyfin documentation](https
 - Always **lowercase** (**NOT** Cherub **BUT** cherub)
 - Replace of **space** by **underline** (**NOT** sword art online **BUT** sword_art_online)
 - Multiple **zero digit** before number (**NOT** sword_art_online_1 **BUT** sword_art_online_001)
+
+## Protocol
+
+1) Get book and rename it with [naming rules](#naming-rules)
+2) Get cover and banner and convert it to PNG

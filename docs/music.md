@@ -8,6 +8,7 @@
   - [Table Of Contents](#table-of-contents)
   - [Folders](#folders)
   - [Naming Rules](#naming-rules)
+  - [Protocol](#protocol)
 
 ## Folders
 
@@ -32,3 +33,8 @@ We use this documentation to organize our musics : [Jellyfin documentation](http
 - Always **lowercase** (**NOT** Event Name **BUT** event name)
 - Replace of **space** by **underline** (**NOT** event name **BUT** event_name)
 - Multiple **zero digit** before number (**NOT** event_name_YYYY-MM-DD_1 **BUT** event_name_YYYY-MM-DD_001)
+
+## Protocol
+
+1) Get music and rename it with [naming rules](#naming-rules)
+2) Get cover, poster and banner and convert it to PNG

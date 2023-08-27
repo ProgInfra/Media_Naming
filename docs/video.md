@@ -9,8 +9,10 @@
   - [Videos Type](#videos-type)
   - [Movies Folders](#movies-folders)
     - [Movies Naming Rules](#movies-naming-rules)
+    - [Movies Protocol](#movies-protocol)
   - [Series and Animes Folders](#series-and-animes-folders)
     - [Series and Animes Naming Rules](#series-and-animes-naming-rules)
+    - [Series and Animes Protocol](#series-and-animes-protocol)
   - [Divers](#divers)
 
 ## Videos Type
@@ -55,6 +57,14 @@ We use this documentation to organize our movies : [Jellyfin documentation](http
   - [IMDB (for movies and series)](https://www.imdb.com) : [imdbid-tt0371746]
   - [TMDB (for movies)](https://www.themoviedb.org/) : [tmdbid-413594]
 
+### Movies Protocol
+
+1) Get movie with best quality and rename it with [movies naming rules](#movies-naming-rules)
+2) Add some clips if you have some, you can use the [tools](./tools.md) to extract a screenshot or a part of a video and rename it
+3) Find extrafanart, rename it and convert these to PNG
+4) Add some screenshot if you have some
+5) Get cover and banner and convert it to PNG
+
 ## Series and Animes Folders
 
 We use this documentation to organize our series : [Jellyfin documentation](https://jellyfin.org/docs/general/server/media/shows/)
@@ -93,6 +103,18 @@ We use this documentation to organize our series : [Jellyfin documentation](http
 - **Metadata ID** :
   - [IMDB (for movies and series)](https://www.imdb.com) : [imdbid-tt0371746]
   - [TVDB (for series)](https://thetvdb.com/) : [tvdbid-259640]
+
+### Series and Animes Protocol
+
+1) Get serie or anime with best quality and rename it with [series and animes naming rules](#series-and-animes-naming-rules)
+2) Divide it if you have multiple seasons
+3) Add some clips if you have some, you can use the [tools](./tools.md) to extract a screenshot or a part of a video and rename it
+4) Add some extras if you have some and rename it
+5) Find wallpapers, rename these, and convert these to PNG
+6) Add some screenshot if you have some
+7) Extract intro for series or opening and ending for animes, you can use the [tools](./tools.md) to extract this part of a video and rename these
+8) Find OST, rename these and convert these if needed
+9) Get cover and banner and convert it to PNG
 
 ## Divers
 

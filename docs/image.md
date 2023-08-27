@@ -8,6 +8,7 @@
   - [Table Of Contents](#table-of-contents)
   - [Folders](#folders)
   - [Naming Rules](#naming-rules)
+  - [Protocol](#protocol)
 
 ## Folders
 
@@ -34,3 +35,8 @@
 - **Formatted Date** : **YYYY-MM-DD** (Year-Month-Day = 2022-11-31)
 - **Formatted Time** : **HH-MM-SS** (Hour-Minute-Second = 18-54-30)
 - **Formatted DateTime** : **YYYY-MM-DD_HH-MM-SS** (Year-Month-Day_Hour-Minute-Second = 2022-11-31_18-54-30)
+
+## Protocol
+
+1) Get image and rename it with [naming rules](#naming-rules)
+2) Convert it to PNG or other image format
