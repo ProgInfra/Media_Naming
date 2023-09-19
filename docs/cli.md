@@ -51,6 +51,7 @@ $ naming media [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `book`: Add folders to store a book
+* `extract`: Extract screenshots, clips, backdrops from...
 * `game`: Add folders to store a game
 * `image`: Add folders to store some images
 * `init`: Create folders for your media storage
@@ -77,6 +78,20 @@ $ naming media book [OPTIONS] NAME
 * `-o, --output-folder TEXT`: [default: .]
 * `-t, --type [audiobook|book|comic|manga|manhwa|manhua|webtoon]`: [default: book]
 * `-an, --author-name TEXT`
+* `--help`: Show this message and exit.
+
+### `naming media extract`
+
+Extract screenshots, clips, backdrops from extraction definition file
+
+**Usage**:
+
+```console
+$ naming media extract [OPTIONS]
+```
+
+**Options**:
+
 * `--help`: Show this message and exit.
 
 ### `naming media game`
