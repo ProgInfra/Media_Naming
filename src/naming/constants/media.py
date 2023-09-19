@@ -30,3 +30,6 @@ MEDIA_VIDEO = {
         'divers': None,
     }
 }
+
+EXTRACTOR_DEF_FILENAME = 'extract.json'
+EXTRACTOR_SCRIPT_FILENAME = 'extract.sh'

@@ -27,6 +27,11 @@ version = "0.9.1"
 summary = "Python parser for the CommonMark Markdown spec"
 
 [[package]]
+name = "ffmpy"
+version = "0.3.1"
+summary = "A simple Python wrapper for ffmpeg"
+
+[[package]]
 name = "flake8"
 version = "6.0.0"
 requires_python = ">=3.8.1"
@@ -113,7 +118,7 @@ dependencies = [
 [metadata]
 lock_version = "4.2"
 groups = ["default", "dev"]
-content_hash = "sha256:7ef434b3877aeb6930f9c11f3d2b904026c1d04711d148b8a4dcc2180cc0edc2"
+content_hash = "sha256:fc16f5e79560f438a72b041a38c8348bff03c326d7ac7144138524d0ae3e01bb"
 
 [metadata.files]
 "asyncio 3.4.3" = [
@@ -133,6 +138,9 @@ content_hash = "sha256:7ef434b3877aeb6930f9c11f3d2b904026c1d04711d148b8a4dcc2180
 "commonmark 0.9.1" = [
     {url = "https://files.pythonhosted.org/packages/60/48/a60f593447e8f0894ebb7f6e6c1f25dafc5e89c5879fdc9360ae93ff83f0/commonmark-0.9.1.tar.gz", hash = "sha256:452f9dc859be7f06631ddcb328b6919c67984aca654e5fefb3914d54691aed60"},
     {url = "https://files.pythonhosted.org/packages/b1/92/dfd892312d822f36c55366118b95d914e5f16de11044a27cf10a7d71bbbf/commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
+]
+"ffmpy 0.3.1" = [
+    {url = "https://files.pythonhosted.org/packages/9a/06/49b275a312eb207e2a2718a7414dedfded05088437352b67aaa9a355f948/ffmpy-0.3.1.tar.gz", hash = "sha256:a173b8f42c7c669ff722df7fb31e1e870067713697f745224fa6e621b82f0004"},
 ]
 "flake8 6.0.0" = [
     {url = "https://files.pythonhosted.org/packages/66/53/3ad4a3b74d609b3b9008a10075c40e7c8909eae60af53623c3888f7a529a/flake8-6.0.0.tar.gz", hash = "sha256:c61007e76655af75e6785a931f452915b371dc48f56efd765247c8fe68f2b181"},

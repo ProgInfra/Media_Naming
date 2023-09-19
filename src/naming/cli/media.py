@@ -6,8 +6,12 @@ import typer
 
 # Import created libraries
 from ..utils import wrapper
+from ..constants import media as MediaConstants
 from ..services import media as MediaService
 from ..models import media as MediaModels
+from ..services import extractor as ExtractorService
+from ..models import extractor as ExtractorModels
+from ..services import io as IOService
 
 
 # Init Typer
@@ -35,6 +39,17 @@ async def init(
         music,
         video
     )
+
+
+@app.command()
+@wrapper.typer_async
+async def extract():
+    '''
+    Extract screenshots, clips, backdrops from extraction definition file
+    '''
+    data: ExtractorModels.ExtractorData = await ExtractorService.loadData(MediaConstants.EXTRACTOR_DEF_FILENAME)
+    extractScript: str = await ExtractorService.getExtractScript(data)
+    await IOService.writeFile('.', MediaConstants.EXTRACTOR_SCRIPT_FILENAME, extractScript)
 
 
 @app.command()

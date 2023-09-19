@@ -82,16 +82,14 @@ We have create in naming a command to automatically extract screenshot and clip 
   - **name (OPTIONAL)** : Custom Name (**ex** : "fly")
 - **clips** : List of clips to extract
   - **file** : Filename of the video (**ex** : "video_s01_e01.mp4")
-  - **start** : Start time of the clip (**ex** : "00:00:10.000" or 30 for 30 seconds)
-  - **stop** : Stop time of the clip (**ex** : "00:01:45.000")
-  - **duration (OPTIONAL)** : Duration from the start time (**ex** : 30 for 30 seconds) (need of stop or duration)
+  - **start** : Start time of the clip (**ex** : "00:00:10.000")
+  - **stop or duration** : Stop time of the clip (**ex** : "00:01:45.000") or for a specific duration (**ex** : "60")
   - **name (OPTIONAL)** : Custom Name (**ex** : "fight")
 - **backdrops** : List of opening or ending to extract and converted to mp3
-  - **name** : Backdrops Name (**ex** : "op" for opening or "ed" ending)
   - **file** : Filename of the video (**ex** : "video_s01_e01.mp4")
-  - **start** : Start time of the clip (**ex** : "00:00:10.000" or 30 for 30 seconds)
-  - **stop** : Stop time of the clip (**ex** : "00:01:45.000")
-  - **duration (OPTIONAL)** : Duration from the start time (**ex** : 30 for 30 seconds) (need of stop or duration)
+  - **start** : Start time of the clip (**ex** : "00:00:10.000")
+  - **stop or duration** : Stop time of the clip (**ex** : "00:01:45.000") or for a specific duration (**ex** : "60")
+  - **name  (OPTIONAL)** : Backdrops Name (**ex** : "op" for opening or "ed" ending)
 
 Example :
 
@@ -103,41 +101,16 @@ Example :
   ],
   "clips": [
     { "file": "video_s01_e01.mp4", "start": "00:00:10.000", "stop": "00:01:45.000" },
-    { "file": "video_s01_e01.mp4", "start": 5, "duration": 30 }
+    { "file": "video_s01_e01.mp4", "start": "00:00:10.000", "duration": "120" }
   ],
   "backdrops": [
-    { "name": "op", "file": "video_s01_e01.mp4", "start": 1, "duration": 90 },
     { "name": "ed", "file": "video_s01_e01.mp4", "start": "00:00:10.000", "stop": "00:01:45.000" }
   ]
 }
 ```
 
-```yaml
-screenshots:
-- file: "video_s01_e01.mp4"
-  time: "00:02:43.500"
-- file: "video_s01_e01.mp4"
-  time: "00:18:00.000"
-
-clips:
-- file: "video_s01_e01.mp4"
-  start: "00:00:10.000"
-  stop: "00:01:45.000"
-- file: "video_s01_e01.mp4"
-  start: 5
-  duration: 30
-
-backdrops:
-- name: "op"
-  file: "video_s01_e01.mp4"
-  start: "00:00:10.000"
-  stop: "00:01:45.000"
-- name: "ed"
-  file: "video_s01_e01.mp4"
-  start: 5
-  duration: 30
-```
-
-Save it to file : `extract.json` or `extract.yml` or `extract.yaml`
+Save it to file : `extract.json`
 
 Next you can run this command in the media folder where the extract file is : `naming media extract`
+
+A script will be produce and you can run it with this command : `./extract.sh`
