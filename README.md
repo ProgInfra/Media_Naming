@@ -72,13 +72,13 @@ naming media image -m tmp/medias -t photo "Summer 2022"
 To **install** it :
 
 ```bash
-docker pull progower/media-naming:1.2.0
+docker pull progower/media-naming:1.4.0
 ```
 
 To **use** it :
 
 ```bash
-alias naming='docker run --rm -it -v ${PWD}:/app --workdir /app progower/media-naming:1.2.0 naming'
+alias naming='docker run --rm -it -v ${PWD}:/app --workdir /app -u 1000:1000 progower/media-naming:1.4.0 naming'
 naming --help
 naming init -o tmp
 naming media init -o tmp/medias

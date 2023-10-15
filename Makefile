@@ -4,7 +4,7 @@ publish: publish-docker
 
 publish-docker: build
 	docker login
-	docker push progower/media-naming:1.3.0
+	docker push progower/media-naming:1.4.0
 
 build: build-dev generate-docs
 	docker compose -f ./docker/docker-compose.yml build

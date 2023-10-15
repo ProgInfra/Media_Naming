@@ -2,6 +2,8 @@ FROM python:3.10-slim-bullseye as build
 WORKDIR /usr/src/app
 SHELL [ "/bin/bash", "-c" ]
 
+RUN mkdir /.cache && chmod 777 -R /.cache
+
 # Install PDM Globally
 RUN pip install pdm
 

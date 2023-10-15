@@ -1,6 +1,6 @@
 [project]
 name = "naming"
-version = "1.3.0"
+version = "1.4.0"
 description = "Create folders for many type of media."
 authors = [
     {name = "ProgOwer", email = "progower0770@gmail.com"},

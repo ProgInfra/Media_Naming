@@ -4,7 +4,8 @@ name: media-naming
 services:
   media-naming:
     container_name: media-naming
-    image: progower/media-naming:1.3.0
+    image: progower/media-naming:1.4.0
+    user: 1000:1000
     build:
       context: ..
       dockerfile: ./docker/Dockerfile
