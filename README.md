@@ -43,6 +43,7 @@ How to structure your system (media, computer, ...).
 - [Music Naming](./docs/music.md)
 - [Video Naming](./docs/video.md)
 - [Tools](./docs/sources.md)
+- [Naming Workspace](./docs/workspace.md)
 - [Ideas](./docs/ideas.md)
 
 ## Getting Started

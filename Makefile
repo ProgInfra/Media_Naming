@@ -55,3 +55,19 @@ start-docs-dev:
 
 stop-docs-dev:
 	docker compose -f ./docsify/docker-compose.dev.yml down
+
+
+# Workspace
+w-init:
+	mkdir -p ./workspace
+	mkdir -p ./workspace/01-todo
+	mkdir -p ./workspace/02-doing
+	mkdir -p ./workspace/03-done
+	echo "# Example : naming media serie "TODO" -t "anime" -db "TODO" -id "TODO" -ns 0" > ./workspace/working.sh
+	docker compose -f ./docker/docker-compose.dev.yml run --rm -it media-naming-dev pdm run naming media init -o ./workspace/medias
+
+w-start-test:
+	docker compose -f ./docker/docker-compose.workspace.yml up
+
+w-stop-test:
+	docker compose -f ./docker/docker-compose.workspace.yml down

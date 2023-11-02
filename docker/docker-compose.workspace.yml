@@ -1,0 +1,19 @@
+---
+name: naming-workspace-test
+
+volumes:
+  config:
+
+services:
+  test:
+    image: linuxserver/jellyfin:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - config:/config:rw
+      - ../workspace/03-done:/data/medias:rw
+    ports:
+      - 8097:8096
+    restart: "no"
